@@ -75,9 +75,9 @@ class Main(QMainWindow):
                     <style>
                         body 
                         {{
-                            color: white;
+                            color: rgb(255,255,255);
                             font-size: 16px;
-                            background-color: grey;
+                            background-color: rgb(105,105,105);
                         }}
                     </style>
                 </head>

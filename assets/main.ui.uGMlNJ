@@ -14,33 +14,51 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-QScrollBar::sub-page:horizontal {
-    background: rgba(255, 255, 255, 0)
+   <string notr="true">/* Vertical Scroll Bar */
+QScrollBar:vertical {
+    background: rgb(9, 51, 56); /* Dark green */
+    width: 15px; /* Increased width for vertical scrollbar */
 }
 
-QScrollBar::add-page:horizontal {
-    background: rgba(255, 255, 255, 0)
+QScrollBar::handle:vertical {
+    background: rgb(0, 255, 0); /* Light green */
+    min-height: 20px;
 }
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {
-    background: rgba(255, 255, 255, 0)
+    background: none;
 }
 
-QScrollBar::add-page:vertical {
-    background: rgba(255, 255, 255, 0)
+/* Horizontal Scroll Bar */
+QScrollBar:horizontal {
+    background: rgb(9, 51, 56); /* Dark green */
+    height: 15px; /* Increased height for horizontal scrollbar */
 }
-QScrollBar::handle
-{
-	background : rgb(9, 51, 56);
-	min-height: 40px;
+
+QScrollBar::handle:horizontal {
+    background: rgb(0, 255, 0); /* Light green */
+    min-width: 20px;
 }
-QScrollBar::add-line,
-QScrollBar::sub-line {
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
     width: 0;
     subcontrol-position: right;
     subcontrol-origin: margin;
 }
 
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: none;
+}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
