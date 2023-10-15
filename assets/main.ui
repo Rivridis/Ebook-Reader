@@ -40,6 +40,10 @@ QScrollBar::sub-line {
     subcontrol-position: right;
     subcontrol-origin: margin;
 }
+QPushButton:hover:!pressed
+{
+  border: 1px solid rgb(170, 164, 255);
+}
 
 </string>
   </property>
@@ -85,7 +89,8 @@ color: rgb(0, 0, 0);</string>
           <item>
            <widget class="QTreeView" name="tree">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 216, 254);</string>
+             <string notr="true">background-color: rgb(222, 216, 254);
+color: rgb(0, 0, 0);</string>
             </property>
            </widget>
           </item>

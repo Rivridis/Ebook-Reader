@@ -5,6 +5,7 @@ from PySide6.QtUiTools import QUiLoader
 import sys
 from ebooklib import epub
 from bs4 import BeautifulSoup
+import qdarktheme
 
 import time
 
@@ -19,6 +20,7 @@ def show_splash_screen():
 
 def main():
     app = QApplication(sys.argv)
+    qdarktheme.setup_theme("auto")
 
     # Create and show splash screen
     splash = show_splash_screen()
