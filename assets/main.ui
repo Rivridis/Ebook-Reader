@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(42, 42, 42);</string>
+   <string notr="true">background-color: rgb(6, 50, 50);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,5">
@@ -30,8 +30,8 @@
           <item>
            <widget class="QPushButton" name="pushButton">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(65, 65, 65);
-color: rgb(255, 255, 255);</string>
+             <string notr="true">background-color: rgb(222, 216, 254);
+color: rgb(0, 0, 0);</string>
             </property>
             <property name="text">
              <string>Switch View</string>
@@ -41,8 +41,8 @@ color: rgb(255, 255, 255);</string>
           <item>
            <widget class="QPushButton" name="direct">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(65, 65, 65);
-color: rgb(255, 255, 255);</string>
+             <string notr="true">background-color: rgb(222, 216, 254);
+color: rgb(0, 0, 0);</string>
             </property>
             <property name="text">
              <string>Select Directory</string>
@@ -52,7 +52,7 @@ color: rgb(255, 255, 255);</string>
           <item>
            <widget class="QTreeView" name="tree">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(65, 65, 65);</string>
+             <string notr="true">background-color: rgb(222, 216, 254);</string>
             </property>
            </widget>
           </item>
@@ -66,7 +66,12 @@ color: rgb(255, 255, 255);</string>
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QTextEdit" name="text"/>
+       <widget class="QTextEdit" name="text">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(223, 217, 255);
+color: rgb(0, 0, 0);</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

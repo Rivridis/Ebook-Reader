@@ -69,7 +69,24 @@ class Main(QMainWindow):
             for item in book.items:
                 if isinstance(item, epub.EpubHtml):
                     content += item.content.decode('utf-8')
-            self.text.setHtml(content)
+            styled_content = f"""
+            <html>
+                <head>
+                    <style>
+                        body 
+                        {{
+                            color: white;
+                            font-size: 16px;
+                            background-color: grey;
+                        }}
+                    </style>
+                </head>
+                <body>
+                    {content}
+                </body>
+            </html>
+            """
+            self.text.setHtml(styled_content)
 
             #text_format = QTextCharFormat()
 
