@@ -9,6 +9,56 @@ import qdarktheme
 
 import time
 
+qss = """
+        QScrollBar::sub-page:horizontal {
+        background: rgba(255, 255, 255, 0)
+    }
+
+    QScrollBar::add-page:horizontal {
+        background: rgba(255, 255, 255, 0)
+    }
+    QScrollBar::sub-page:vertical {
+        background: rgba(255, 255, 255, 0)
+    }
+
+    QScrollBar::add-page:vertical {
+        background: rgba(255, 255, 255, 0)
+    }
+    QScrollBar::handle
+    {
+        background : rgb(170, 164, 255);
+        min-height: 40px;
+    }
+    QScrollBar::handle:vertical
+    {
+        background : rgb(170, 164, 255);
+        min-height: 40px;
+    }
+    QScrollBar::handle::pressed
+    {
+    background : rgb(170, 164, 255); 
+    }
+    QScrollBar::handle::hover
+    {
+    background : rgb(170, 164, 255);
+    }
+    QScrollBar::add-line,
+    QScrollBar::sub-line {
+        width: 0;
+        subcontrol-position: right;
+        subcontrol-origin: margin;
+    }
+    QPushButton:hover:!pressed
+    {
+    border: 1px solid rgb(170, 164, 255);
+    }
+    QPushButton
+    {
+    color:rgb(170, 164, 255);
+    }
+
+    """
+
 def show_splash_screen():
     splash_pix = QPixmap('assets\splash.jpg')
     splash_pix = splash_pix.scaled(550, 450, Qt.KeepAspectRatio,Qt.SmoothTransformation)
@@ -20,7 +70,8 @@ def show_splash_screen():
 
 def main():
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("auto")
+
+    qdarktheme.setup_theme(additional_qss=qss)
 
     # Create and show splash screen
     splash = show_splash_screen()

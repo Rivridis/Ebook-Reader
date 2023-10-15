@@ -15,45 +15,45 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-QScrollBar::sub-page:horizontal {
-    background: rgba(255, 255, 255, 0)
-}
-
-QScrollBar::add-page:horizontal {
-    background: rgba(255, 255, 255, 0)
-}
-QScrollBar::sub-page:vertical {
-    background: rgba(255, 255, 255, 0)
-}
-
-QScrollBar::add-page:vertical {
-    background: rgba(255, 255, 255, 0)
-}
-QScrollBar::handle
-{
-	background : rgb(9, 51, 56);
-	min-height: 40px;
-}
-QScrollBar::add-line,
-QScrollBar::sub-line {
-    width: 0;
-    subcontrol-position: right;
-    subcontrol-origin: margin;
-}
-QPushButton:hover:!pressed
-{
-  border: 1px solid rgb(170, 164, 255);
-}
-
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(9, 51, 56);</string>
+    <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,5">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="styleSheet">
@@ -64,11 +64,25 @@ QPushButton:hover:!pressed
         </property>
         <widget class="QWidget" name="page">
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
           <item>
            <widget class="QPushButton" name="pushButton">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 216, 254);
-color: rgb(0, 0, 0);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Switch View</string>
@@ -78,8 +92,7 @@ color: rgb(0, 0, 0);</string>
           <item>
            <widget class="QPushButton" name="direct">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 216, 254);
-color: rgb(0, 0, 0);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Select Directory</string>
@@ -89,16 +102,14 @@ color: rgb(0, 0, 0);</string>
           <item>
            <widget class="QTreeView" name="tree">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 216, 254);
-color: rgb(0, 0, 0);</string>
+             <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="settings">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 216, 254);
-color: rgb(0, 0, 0);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Settings</string>
@@ -114,11 +125,16 @@ color: rgb(0, 0, 0);</string>
     </item>
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>5</number>
+      </property>
       <item>
        <widget class="QTextEdit" name="text">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(223, 217, 255);
-color: rgb(0, 0, 0);</string>
+         <string notr="true"/>
         </property>
        </widget>
       </item>
