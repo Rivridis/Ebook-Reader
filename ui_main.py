@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
 from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor
-from PySide6.QtCore import Qt,QTimer,QPoint
+from PySide6.QtCore import Qt,QTimer
 from PySide6.QtUiTools import QUiLoader
 import sys
 from ebooklib import epub
@@ -83,6 +83,7 @@ def main():
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.current_file_hash = None
         loader = QUiLoader()
         ui_file = "assets/main.ui" 
         ui = loader.load(ui_file, self)
@@ -101,6 +102,7 @@ class Main(QMainWindow):
 
         self.text = ui.findChild(QTextEdit,'text')
         self.text.setReadOnly(True)
+        self.scroll_bar = self.text.verticalScrollBar()
 
 
     def dirpop(self):
@@ -110,12 +112,19 @@ class Main(QMainWindow):
         if directory:
             self.tree.setRootIndex(self.model.index(directory))
     
+    def generate_file_hash(self, content):
+        sha256 = hashlib.sha256()
+        sha256.update(content.encode('utf-8'))
+        return sha256.hexdigest()
     
     def choose(self, index):
-        self.file_path = self.model.filePath(index)
-        if ".epub" in self.file_path:
+        file_path = self.model.filePath(index)
+        if ".epub" in file_path:
+            # Save the current scroll position
+            if self.current_file_hash:
+                scroll_positions[self.current_file_hash] = self.text.verticalScrollBar().value()
 
-            book = epub.read_epub(self.file_path)
+            book = epub.read_epub(file_path)
             content = ""
             for item in book.items:
                 if isinstance(item, epub.EpubHtml):
@@ -139,35 +148,17 @@ class Main(QMainWindow):
             """
             self.text.setHtml(styled_content)
 
+            # Generate a unique hash for the current file
+            self.current_file_hash = self.generate_file_hash(content)
+
             # Restore the scroll position if available
-            if self.file_path in scroll_positions:
-                text_cursor = self.text.textCursor()
-                text_cursor.setPosition(scroll_positions[self.file_path])
-                self.text.setTextCursor(text_cursor)
-            else:
-                scroll_positions[self.file_path] = 0
-
-            print(scroll_positions)
-            self.autosaveTimer = QTimer()
-            self.autosaveTimer.timeout.connect(self.saveFile)
-            self.autosaveTimer.setInterval(1000)
-            self.autosaveTimer.start()
-
+            if self.current_file_hash in scroll_positions:
+                QTimer.singleShot(100, lambda: self.text.verticalScrollBar().setValue(scroll_positions[self.current_file_hash]))
         else:
             QMessageBox.information(self, "Invalid filetype","Please choose another file")
 
-    def saveFile(self):
-            cursorTop = self.text.cursorForPosition(QPoint(0, 0))
-            self.position = cursorTop.position()
-            if self.file_path in scroll_positions:
-                scroll_positions[self.file_path] = self.position
-            else:
-                scroll_positions[self.file_path] = 0
-            print(self.position)
-
 if __name__ == "__main__":
     main()
-    
     
 
 
