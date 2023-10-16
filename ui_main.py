@@ -137,26 +137,6 @@ class Main(QMainWindow):
             </html>
             """
             self.text.setHtml(styled_content)
-
-            #text_format = QTextCharFormat()
-
-
-            # # Set font color
-            # text_format.setForeground(QColor("#FFFFFF"))  # Change to desired color
-
-            # # Set font family
-            # font = QFont("garamond")  # Change to desired font family
-            # text_format.setFont(font)
-
-            # # Set font size
-            # text_format.setFontPointSize(22)  # Change to desired size
-
-            # # Apply the format to the entire document
-            # cursor = self.text.textCursor()
-            # cursor.select(QTextCursor.Document)
-            # cursor.setCharFormat(text_format)
-            
-        
         else:
             QMessageBox.information(self, "Invalid filetype","Please choose another file")
         

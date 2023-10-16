@@ -70,7 +70,7 @@
            <number>0</number>
           </property>
           <property name="topMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
            <number>0</number>
@@ -79,26 +79,6 @@
            <number>5</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="styleSheet">
-             <string notr="true">font: 12pt &quot;Segoe UI&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Switch View</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="direct">
-            <property name="styleSheet">
-             <string notr="true">font: 12pt &quot;Segoe UI&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Select Directory</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QTreeView" name="tree">
             <property name="styleSheet">
              <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -106,9 +86,35 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="direct">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+text-align: left;
+QAbstractButton {
+    qproperty-icon: theme_url(&quot;B:\Github\Python-App\settings_FILL0_wght400_GRAD0_opsz24.svg&quot;);
+}</string>
+            </property>
+            <property name="text">
+             <string>Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+text-align: left;</string>
+            </property>
+            <property name="text">
+             <string>Contents</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="settings">
             <property name="styleSheet">
-             <string notr="true">font: 12pt &quot;Segoe UI&quot;;</string>
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+text-align: left;</string>
             </property>
             <property name="text">
              <string>Settings</string>
