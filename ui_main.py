@@ -26,21 +26,21 @@ qss = """
     }
     QScrollBar::handle
     {
-        background : rgb(170, 164, 255);
+        background : rgba(138,124,171,1);
         min-height: 40px;
     }
     QScrollBar::handle:vertical
     {
-        background : rgb(170, 164, 255);
+        background : rgba(138,124,171,1);
         min-height: 40px;
     }
     QScrollBar::handle::pressed
     {
-    background : rgb(170, 164, 255); 
+    background : rgba(138,124,171,1); 
     }
     QScrollBar::handle::hover
     {
-    background : rgb(170, 164, 255);
+    background : rgba(138,124,171,1);
     }
     QScrollBar::add-line,
     QScrollBar::sub-line {
@@ -48,14 +48,7 @@ qss = """
         subcontrol-position: right;
         subcontrol-origin: margin;
     }
-    QPushButton:hover:!pressed
-    {
-    border: 1px solid rgb(170, 164, 255);
-    }
-    QPushButton
-    {
-    color:rgb(170, 164, 255);
-    }
+
 
     """
 
@@ -70,13 +63,17 @@ def show_splash_screen():
 
 def main():
     app = QApplication(sys.argv)
-
-    qdarktheme.setup_theme(additional_qss=qss)
+    qdarktheme.setup_theme(additional_qss=qss,custom_colors={
+        "[dark]": {
+            "primary": "#D0BCFF",
+            "border": "#00000000",
+            "treeSectionHeader.background":"#8a7cab"
+        }
+    })
 
     # Create and show splash screen
     splash = show_splash_screen()
     main_window = Main()
-    time.sleep(1)
     splash.close()
 
     main_window.children()[1].show()
@@ -130,7 +127,7 @@ class Main(QMainWindow):
                         {{
                             color: rgb(255,255,255);
                             font-size: 16px;
-                            background-color: rgb(105,105,105);
+                            background-color: rgba(26,26,29,1);
                         }}
                     </style>
                 </head>
