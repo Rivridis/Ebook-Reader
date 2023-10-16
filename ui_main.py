@@ -4,7 +4,6 @@ from PySide6.QtCore import Qt,QTimer
 from PySide6.QtUiTools import QUiLoader
 import sys
 from ebooklib import epub
-from bs4 import BeautifulSoup
 import qdarktheme
 import hashlib
 import time
@@ -74,6 +73,7 @@ def main():
     # Create and show splash screen
     splash = show_splash_screen()
     main_window = Main()
+    time.sleep(1)
     splash.close()
 
     main_window.children()[1].show()
