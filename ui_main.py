@@ -112,7 +112,7 @@ class Main(QMainWindow):
         self.text = ui.findChild(QTextEdit,'text')
         self.text.setReadOnly(True)
         self.scroll_bar = self.text.verticalScrollBar()
-
+        self.scroll_bar.valueChanged.connect(self.save_scroll_position)
 
     def dirpop(self):
         options = QFileDialog.Options()
@@ -126,15 +126,17 @@ class Main(QMainWindow):
         sha256.update(content.encode('utf-8'))
         return sha256.hexdigest()
     
+    def save_scroll_position(self):
+        if self.current_file_hash:
+            scroll_positions[self.current_file_hash] = self.scroll_bar.value()
+            with open('scroll_positions.json', 'w') as json_file:
+                json.dump(scroll_positions, json_file)
+
+    
     def choose(self, index):
+        self.scroll_bar.valueChanged.disconnect(self.save_scroll_position)
         file_path = self.model.filePath(index)
         if ".epub" in file_path:
-            # Save the current scroll position
-            if self.current_file_hash:
-                scroll_positions[self.current_file_hash] = self.text.verticalScrollBar().value()
-                with open('scroll_positions.json', 'w') as json_file:
-                    json.dump(scroll_positions, json_file)
-
             book = epub.read_epub(file_path)
             content = ""
             for item in book.items:
@@ -162,9 +164,12 @@ class Main(QMainWindow):
             # Generate a unique hash for the current file
             self.current_file_hash = self.generate_file_hash(content)
 
-            # Restore the scroll position if available
-            if self.current_file_hash in scroll_positions:
-                QTimer.singleShot(100, lambda: self.text.verticalScrollBar().setValue(scroll_positions[self.current_file_hash]))
+
+            if self.current_file_hash:
+                QTimer.singleShot(100, lambda: self.scroll_bar.setValue(scroll_positions[self.current_file_hash]))
+            self.scroll_bar.valueChanged.connect(self.save_scroll_position)
+            
+
         else:
             QMessageBox.information(self, "Invalid filetype","Please choose another file")
 
