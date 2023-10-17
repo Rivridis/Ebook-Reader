@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
 from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor
-from PySide6.QtCore import Qt,QTimer
+from PySide6.QtCore import Qt,QTimer,QStandardPaths
 from PySide6.QtUiTools import QUiLoader
 import sys
 from ebooklib import epub
@@ -99,12 +99,13 @@ class Main(QMainWindow):
         self.directory = ui.findChild(QPushButton,"direct")
         self.directory.clicked.connect(self.dirpop)
 
-        self.tree = ui.findChild(QTreeView,"tree") 
+        self.tree = ui.findChild(QTreeView,"tree")
+        downloads_path = QStandardPaths.writableLocation(QStandardPaths.DownloadLocation)
 
         self.model = QFileSystemModel()
-        self.model.setRootPath("/")
+        self.model.setRootPath(downloads_path)
         self.tree.setModel(self.model)
-        self.tree.setRootIndex(self.model.index("/"))
+        self.tree.setRootIndex(self.model.index(downloads_path))
 
         self.tree.doubleClicked.connect(self.choose)
 
