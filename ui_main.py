@@ -7,7 +7,15 @@ from ebooklib import epub
 import qdarktheme
 import hashlib
 import time
-scroll_positions = {}
+import json
+
+try:
+    with open('scroll_positions.json', 'r') as json_file:
+        scroll_positions = json.load(json_file)
+except FileNotFoundError:
+    # If the file doesn't exist yet, create an empty dictionary
+    scroll_positions = {}
+
 qss = """
         QScrollBar::sub-page:horizontal {
         background: rgba(255, 255, 255, 0)
@@ -123,6 +131,8 @@ class Main(QMainWindow):
             # Save the current scroll position
             if self.current_file_hash:
                 scroll_positions[self.current_file_hash] = self.text.verticalScrollBar().value()
+                with open('scroll_positions.json', 'w') as json_file:
+                    json.dump(scroll_positions, json_file)
 
             book = epub.read_epub(file_path)
             content = ""
