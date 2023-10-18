@@ -134,9 +134,9 @@ class Main(QMainWindow):
 
     
     def choose(self, index):
-        self.scroll_bar.valueChanged.disconnect(self.save_scroll_position)
         file_path = self.model.filePath(index)
         if ".epub" in file_path:
+            self.scroll_bar.valueChanged.disconnect(self.save_scroll_position)
             book = epub.read_epub(file_path)
             content = ""
             for item in book.items:
