@@ -148,7 +148,7 @@ class Main(QMainWindow):
                     <style>
                         body 
                         {{
-                            color: rgb(255, 255, 255);
+                            color: rgba(197,197,197,1);
                             font-size: 16px;
                             background-color: rgba(26, 26, 29, 1);
                         }}
