@@ -168,6 +168,8 @@ class Main(QMainWindow):
 
             if self.current_file_hash in scroll_positions.keys():
                 QTimer.singleShot(100, lambda: self.scroll_bar.setValue(scroll_positions[self.current_file_hash][0]))
+
+            QTimer.singleShot(300, lambda:print(self.scroll_bar.maximum())) #use this
             self.scroll_bar.valueChanged.connect(self.save_scroll_position)
             
 
