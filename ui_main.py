@@ -93,7 +93,7 @@ class Main(QMainWindow):
         super().__init__()
         self.current_file_hash = None
         loader = QUiLoader()
-        ui_file = "assets/main.ui" 
+        ui_file = "main.ui" 
         ui = loader.load(ui_file, self)
 
         self.directory = ui.findChild(QPushButton,"direct")
