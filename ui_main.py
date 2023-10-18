@@ -128,7 +128,8 @@ class Main(QMainWindow):
     
     def save_scroll_position(self):
         if self.current_file_hash:
-            scroll_positions[self.current_file_hash] = self.scroll_bar.value()
+            max = self.scroll_bar.maximum()
+            scroll_positions[self.current_file_hash] = [self.scroll_bar.value(),max]
             with open('scroll_positions.json', 'w') as json_file:
                 json.dump(scroll_positions, json_file)
 
@@ -148,7 +149,7 @@ class Main(QMainWindow):
                     <style>
                         body 
                         {{
-                            color: rgba(197,197,197,1);
+                            color: rgba(210,210,210,1);
                             font-size: 16px;
                             background-color: rgba(26, 26, 29, 1);
                         }}
@@ -165,8 +166,8 @@ class Main(QMainWindow):
             self.current_file_hash = self.generate_file_hash(content)
 
 
-            if self.current_file_hash:
-                QTimer.singleShot(100, lambda: self.scroll_bar.setValue(scroll_positions[self.current_file_hash]))
+            if self.current_file_hash in scroll_positions.keys():
+                QTimer.singleShot(100, lambda: self.scroll_bar.setValue(scroll_positions[self.current_file_hash][0]))
             self.scroll_bar.valueChanged.connect(self.save_scroll_position)
             
 
