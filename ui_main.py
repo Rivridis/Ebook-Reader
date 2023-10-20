@@ -125,14 +125,17 @@ class Main(QMainWindow):
         sha256 = hashlib.sha256()
         sha256.update(content.encode('utf-8'))
         return sha256.hexdigest()
+
     
     def save_scroll_position(self):
         if self.current_file_hash:
-            max = self.scroll_bar.maximum()
-            scroll_positions[self.current_file_hash] = [self.scroll_bar.value(),max]
-            with open('scroll_positions.json', 'w') as json_file:
-                json.dump(scroll_positions, json_file)
+            QTimer.singleShot(300, lambda: self._save_scroll_position())
 
+    def _save_scroll_position(self):
+        max_value = self.scroll_bar.maximum()
+        scroll_positions[self.current_file_hash] = [self.scroll_bar.value(), max_value]
+        with open('scroll_positions.json', 'w') as json_file:
+            json.dump(scroll_positions, json_file)
     
     def choose(self, index):
         file_path = self.model.filePath(index)
@@ -168,8 +171,6 @@ class Main(QMainWindow):
 
             if self.current_file_hash in scroll_positions.keys():
                 QTimer.singleShot(100, lambda: self.scroll_bar.setValue(scroll_positions[self.current_file_hash][0]))
-
-            QTimer.singleShot(300, lambda:print(self.scroll_bar.maximum())) #use this
             self.scroll_bar.valueChanged.connect(self.save_scroll_position)
             
 
