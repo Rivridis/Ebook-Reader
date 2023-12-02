@@ -1,13 +1,15 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
-from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor
+from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor,QStandardItem,QStandardItemModel
 from PySide6.QtCore import Qt,QTimer,QStandardPaths
 from PySide6.QtUiTools import QUiLoader
 import sys
+import ebooklib
 from ebooklib import epub
 import qdarktheme
 import hashlib
 import time
 import json
+from bs4 import BeautifulSoup
 
 try:
     with open('scroll_positions.json', 'r') as json_file:
@@ -99,6 +101,9 @@ class Main(QMainWindow):
         self.directory = ui.findChild(QPushButton,"direct")
         self.directory.clicked.connect(self.dirpop)
 
+        self.content = ui.findChild(QPushButton,"content")
+        self.content.clicked.connect(self.confil)
+
         self.tree = ui.findChild(QTreeView,"tree")
         downloads_path = QStandardPaths.writableLocation(QStandardPaths.DownloadLocation)
 
@@ -114,6 +119,28 @@ class Main(QMainWindow):
         self.scroll_bar = self.text.verticalScrollBar()
         self.scroll_bar.valueChanged.connect(self.save_scroll_position)
 
+    def confil(self):
+        if self.current_file_hash:
+            chapters = []
+
+            for item in self.book.get_items():
+                if item.get_type() == ebooklib.ITEM_DOCUMENT:
+                    soup = BeautifulSoup(item.get_content(), 'html.parser')
+                    title = soup.find('h1')  # Assuming the chapter titles are in h1 tags
+                    if title:
+                        chapters.append(title.get_text())
+            print(chapters)
+            self.displayChaptersInTreeView(chapters)
+
+    def displayChaptersInTreeView(self, chapters):
+        model = QStandardItemModel()
+        
+        for chapter in chapters:
+            item = QStandardItem(chapter)
+            model.appendRow(item)
+        model.setHorizontalHeaderLabels(["Chapter List"])
+        self.tree.setModel(model)
+            
     def dirpop(self):
         options = QFileDialog.Options()
         directory = QFileDialog.getExistingDirectory(self, "Select Directory", "", options=options)
@@ -141,9 +168,9 @@ class Main(QMainWindow):
         file_path = self.model.filePath(index)
         if ".epub" in file_path:
             self.scroll_bar.valueChanged.disconnect(self.save_scroll_position)
-            book = epub.read_epub(file_path)
+            self.book = epub.read_epub(file_path)
             content = ""
-            for item in book.items:
+            for item in self.book.items:
                 if isinstance(item, epub.EpubHtml):
                     content += item.content.decode('utf-8')
             styled_content = f"""
@@ -179,6 +206,3 @@ class Main(QMainWindow):
 
 if __name__ == "__main__":
     main()
-    
-
-

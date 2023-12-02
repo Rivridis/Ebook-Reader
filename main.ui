@@ -128,7 +128,7 @@ QAbstractButton {
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="content">
             <property name="styleSheet">
              <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 text-align: left;</string>
