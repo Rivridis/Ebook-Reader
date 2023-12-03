@@ -85,8 +85,7 @@ def main():
     main_window = Main()
     time.sleep(1)
     splash.close()
-
-    main_window.children()[1].show()
+    main_window.children()[1].showMaximized()
     sys.exit(app.exec())
 
 class Main(QMainWindow):
