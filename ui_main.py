@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
-from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor,QStandardItem,QStandardItemModel
+from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor,QStandardItem,QStandardItemModel,QTextOption
 from PySide6.QtCore import Qt,QTimer,QStandardPaths
 from PySide6.QtUiTools import QUiLoader
 import sys
@@ -87,7 +87,6 @@ def main():
     splash.close()
 
     main_window.children()[1].show()
-
     sys.exit(app.exec())
 
 class Main(QMainWindow):
@@ -116,6 +115,7 @@ class Main(QMainWindow):
 
         self.text = ui.findChild(QTextEdit,'text')
         self.text.setReadOnly(True)
+        self._resize_start_cursor = None
         self.scroll_bar = self.text.verticalScrollBar()
         self.scroll_bar.valueChanged.connect(self.save_scroll_position)
 
@@ -194,6 +194,7 @@ class Main(QMainWindow):
             </html>
             """
             self.text.setHtml(styled_content)
+            #self.text.setWordWrapMode(QTextOption.NoWrap)
 
             # Generate a unique hash for the current file
             self.current_file_hash = self.generate_file_hash(content)
