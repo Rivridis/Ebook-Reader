@@ -186,7 +186,7 @@ class Main(QMainWindow):
                         body 
                         {{
                             color: rgba(210,210,210,1);
-                            font-size: 16px;
+                            font-size: 18px;
                             background-color: rgba(26, 26, 29, 1);
                         }}
                     </style>
