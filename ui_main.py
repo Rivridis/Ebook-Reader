@@ -129,19 +129,22 @@ class Main(QMainWindow):
                     title = soup.find('h1')  # Assuming the chapter titles are in h1 tags
                     if title:
                         chapters.append(title.get_text())
-            print(chapters)
             self.displayChaptersInTreeView(chapters)
 
     def displayChaptersInTreeView(self, chapters):
         model = QStandardItemModel()
+        self.tree.doubleClicked.disconnect() 
         
         for chapter in chapters:
             item = QStandardItem(chapter)
+            item.setEditable(False)
             model.appendRow(item)
         model.setHorizontalHeaderLabels(["Chapter List"])
         self.tree.setModel(model)
             
     def dirpop(self):
+        self.tree.setModel(self.model)
+        self.tree.doubleClicked.connect(self.choose)
         options = QFileDialog.Options()
         directory = QFileDialog.getExistingDirectory(self, "Select Directory", "", options=options)
 
