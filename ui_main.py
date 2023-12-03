@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
-from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor,QStandardItem,QStandardItemModel,QTextOption
-from PySide6.QtCore import Qt,QTimer,QStandardPaths,QSize,QCoreApplication
+import PySide6
+from PySide6.QtWidgets import QApplication, QMessageBox,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextEdit
+from PySide6.QtGui import QPixmap,QStandardItem,QStandardItemModel
+from PySide6.QtCore import Qt,QTimer,QStandardPaths,QCoreApplication
 from PySide6.QtUiTools import QUiLoader
 import sys
 import ebooklib
