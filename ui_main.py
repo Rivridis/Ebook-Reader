@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout,QMessageBox,QLineEdit,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextBrowser,QTextEdit
 from PySide6.QtGui import QPixmap,QTextCharFormat,QFont,QTextCursor,QColor,QStandardItem,QStandardItemModel,QTextOption
-from PySide6.QtCore import Qt,QTimer,QStandardPaths
+from PySide6.QtCore import Qt,QTimer,QStandardPaths,QSize,QCoreApplication
 from PySide6.QtUiTools import QUiLoader
 import sys
 import ebooklib
@@ -85,7 +85,8 @@ def main():
     main_window = Main()
     time.sleep(1)
     splash.close()
-    main_window.children()[1].showMaximized()
+
+    main_window.children()[1].showFullScreen()
     sys.exit(app.exec())
 
 class Main(QMainWindow):
@@ -101,6 +102,9 @@ class Main(QMainWindow):
 
         self.content = ui.findChild(QPushButton,"content")
         self.content.clicked.connect(self.confil)
+
+        self.exit = ui.findChild(QPushButton,"exit")
+        self.exit.clicked.connect(QCoreApplication.instance().quit)
 
         self.tree = ui.findChild(QTreeView,"tree")
         downloads_path = QStandardPaths.writableLocation(QStandardPaths.DownloadLocation)

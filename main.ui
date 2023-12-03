@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>600</height>
+    <width>868</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -24,7 +24,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
@@ -32,21 +32,21 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,5">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,5">
     <property name="leftMargin">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="rightMargin">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="spacing">
-     <number>0</number>
+     <number>3</number>
     </property>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -148,6 +148,27 @@ text-align: left;</string>
             <property name="icon">
              <iconset>
               <normaloff>assets/settings_white_24dp.svg</normaloff>assets/settings_white_24dp.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="exit">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+text-align: left;</string>
+            </property>
+            <property name="text">
+             <string>  Exit</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>assets/logout_white_24dp.svg</normaloff>assets/logout_white_24dp.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
