@@ -107,6 +107,9 @@ class Main(QMainWindow):
         self.exit = ui.findChild(QPushButton,"exit")
         self.exit.clicked.connect(QCoreApplication.instance().quit)
 
+        self.settings = ui.findChild(QPushButton,"settings")
+        self.settings.clicked.connect(self.sett)
+
         self.tree = ui.findChild(QTreeView,"tree")
         downloads_path = QStandardPaths.writableLocation(QStandardPaths.DownloadLocation)
 
@@ -123,6 +126,9 @@ class Main(QMainWindow):
         self.scroll_bar = self.text.verticalScrollBar()
         self.scroll_bar.valueChanged.connect(self.save_scroll_position)
 
+    def sett(self):
+        pass
+        
     def confil(self):
         if self.current_file_hash:
             chapters = []
