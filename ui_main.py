@@ -219,4 +219,4 @@ class Main(QMainWindow):
             QMessageBox.information(self, "Invalid filetype","Please choose another file")
 
 if __name__ == "__main__":
-    main()
+    main() #run
