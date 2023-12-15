@@ -29,6 +29,9 @@ def show_splash_screen():
 
 def main():
     app = QApplication(sys.argv)
+    qss="style.qss"
+    with open(qss,"r") as qs:
+        app.setStyleSheet(qs.read())
     # Create and show splash screen
     splash = show_splash_screen()
     main_window = Main()
