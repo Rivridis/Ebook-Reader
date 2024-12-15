@@ -1,3 +1,4 @@
+import PySide6
 from PySide6.QtWidgets import QApplication, QMessageBox,QPushButton,QMainWindow,QSplashScreen,QFileDialog,QTreeView,QFileSystemModel,QTextEdit
 from PySide6.QtGui import QPixmap,QStandardItem,QStandardItemModel
 from PySide6.QtCore import Qt,QTimer,QStandardPaths,QCoreApplication
@@ -19,7 +20,7 @@ except FileNotFoundError:
 
 
 def show_splash_screen():
-    splash_pix = QPixmap('assets\\splash.jpg')
+    splash_pix = QPixmap(r"B:\Github\Ebook-Reader\assets\splash.jpg")
     splash_pix = splash_pix.scaled(550, 450, Qt.KeepAspectRatio,Qt.SmoothTransformation)
     splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
     splash.setMask(splash_pix.mask())
@@ -29,7 +30,7 @@ def show_splash_screen():
 
 def main():
     app = QApplication(sys.argv)
-    qss="style.qss"
+    qss=r"B:\Github\Ebook-Reader\style.qss"
     with open(qss,"r") as qs:
         app.setStyleSheet(qs.read())
     # Create and show splash screen
@@ -46,7 +47,7 @@ class Main(QMainWindow):
         super().__init__()
         self.current_file_hash = None
         loader = QUiLoader()
-        ui_file = "main.ui" 
+        ui_file = r"B:\Github\Ebook-Reader\main.ui" 
         ui = loader.load(ui_file, self)
 
         self.directory = ui.findChild(QPushButton,"direct")
@@ -169,5 +170,5 @@ class Main(QMainWindow):
         else:
             QMessageBox.information(self, "Invalid filetype","Please choose another file")
 
-if __name__ == "__main__":
-    main() #run
+main()
+input()
